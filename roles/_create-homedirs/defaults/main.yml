@@ -1,0 +1,7 @@
+---
+home_dirs:
+  - [art, art/audio, art/image, art/video]  # Multimedia files
+  - [bin]                                   # Personal binaries
+  - [etc]                                   # Configuration files
+  - [opt]                                   # Miscelaneous files
+  - [var, var/proj, var/downloads]          # Variable files

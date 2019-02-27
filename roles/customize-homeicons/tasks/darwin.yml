@@ -1,0 +1,24 @@
+---
+- name: Check if system icons folder exists
+  stat:
+    path: /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources
+  register: systemicons
+
+- name: Get fileicon from GitHub
+  get_url:
+    url: https://raw.githubusercontent.com/mklement0/fileicon/stable/bin/fileicon   # yamllint disable-line rule:line-length
+    dest: '{{ ansible_env.HOME | default("~") }}/bin'
+    mode: u+x
+  when:
+    - systemicons.stat.isdir is defined
+    - systemicons.stat.isdir
+
+- name: Apply icons
+  loop: '{{ file_icons }}'
+  shell: 'fileicon set {{ ansible_env.HOME | default("~") }}/{{item.0 | quote}} {{ systemicons.stat.path }}/{{ item.1 | quote }}.icns'  # yamllint disable-line rule:line-length
+  register: fileicons
+  when:
+    - systemicons.stat.isdir is defined
+    - systemicons.stat.isdir
+  changed_when: fileicons.rc != 0
+...

@@ -1,0 +1,13 @@
+---
+file_icons:
+  - [art, ServerApplicationsFolderIcon]
+  - [art/audio, MusicFolderIcon]
+  - [art/image, PicturesFolderIcon]
+  - [art/video, MovieFolderIcon]
+  - [bin, ApplicationsFolderIcon]
+  - [etc, LibraryFolderIcon]
+  - [opt, DocumentsFolderIcon]
+  - [var, UtilitiesFolder]
+  - [var/proj, DeveloperFolderIcon]
+  - [var/downloads, DownloadsFolder]
+...

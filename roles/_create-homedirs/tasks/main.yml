@@ -1,0 +1,8 @@
+---
+- name: Create home directories
+  loop: '{{ home_dirs | flatten }}'
+  file:
+    path: '{{ ansible_env.HOME | default("~") }}/{{ item }}'
+    state: directory
+    recurse: true
+...

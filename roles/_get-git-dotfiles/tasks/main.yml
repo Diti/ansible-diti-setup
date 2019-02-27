@@ -1,0 +1,23 @@
+---
+- name: Install prerequisites
+  loop:
+    - git   # FIXME: on macOS, install may fail (see brew doctor)
+    - rsync
+  package:
+    name: '{{ item }}'
+    state: present
+
+# TODO: include dotfiles in playbook as templates, instead of cloning
+
+- name: Clone dotfiles
+  git:
+    repo: https://github.com/Diti/DotFiles.git
+    dest: '{{ local_repo_path }}'
+
+- name: Synchronize with $HOME
+  synchronize:
+    dest: '{{ ansible_env.HOME | default("~") }}'
+    src: '{{ local_repo_path }}'
+    rsync_opts:
+      - --exclude=.git
+...

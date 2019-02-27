@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: true
+
+  roles:
+    # Roles starting with _ in this project are dependencies for roles‘ meta/
+    - dotfiles
+
+  tasks:
+    - name: Install m-cli   # FIXME: Put in a better file/role
+      homebrew:
+        name: m-cli
+        state: present
+      when: ansible_os_family == 'Darwin' and ansible_pkg_mgr == 'homebrew'
+...

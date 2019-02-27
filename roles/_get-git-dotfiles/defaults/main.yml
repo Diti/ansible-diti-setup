@@ -1,0 +1,3 @@
+---
+local_repo_path: '{{ ansible_env.HOME | default("~") }}/etc/DotFiles'
+...
