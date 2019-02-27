@@ -17,7 +17,8 @@
 - name: Synchronize with $HOME
   synchronize:
     dest: '{{ ansible_env.HOME | default("~") }}'
-    src: '{{ local_repo_path }}'
+    src: '{{ local_repo_path }}/'
+    times: false
     rsync_opts:
       - --exclude=.git
 ...
